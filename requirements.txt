@@ -1,0 +1,10 @@
+python-dotenv
+datasets
+langchain-core
+langchain-text-splitters
+langchain-huggingface
+langchain-ollama
+langchain-pinecone
+pinecone
+sentence-transformers
+torch
