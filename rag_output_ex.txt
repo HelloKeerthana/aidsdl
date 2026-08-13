@@ -1,0 +1,17 @@
+DatasetDict({
+    train: Dataset({
+        features: ['Unnamed: 0.1', 'Unnamed: 0', 'title', 'abstract'],
+        num_rows: 117592
+    })
+})
+total papers :  1000
+documents :  1000
+chunks :  1922
+Loading weights: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 103/103 [00:00<00:00, 3663.21it/s]
+inserted into pinecone
+
+=======================
+ANSWER
+=========================
+The methodology mentioned in this paper involves the use of a specific algorithm to analyze and manipulate polynomials, as referenced in the repeated mentions of "polynomial" and "algorithm".
+=========================
