@@ -1,0 +1,117 @@
+agentic design patterns
+
+1. reflection
+    human feedback, humans being external source of information
+2. tool use
+    give access to tools so they give better output like web search for analysis, info gathering, productivity, images...
+3. planning
+    sequence of api calls so llm do it in order, example : generate an image and describe what she doing with voice, so sequence would be : 
+  i.   pose determination - openpose model
+  ii.  pose-to-image google/vit model
+  iii. image-to-text vit-gpt2 model
+  iv. text-to-speech fastspeech model
+4. multi agentic workflows
+   diff tasks to diff agents, like an office simulation with simulation agents
+
+
+REFLECTION 
+- write first draft and then next another agent saying to reflext and write improved second draft...
+- choosing diff models like thinking models are good for finding bugs... so put it in the pipeline
+  reflection is good for generating good results with additional information
+
+DIRECT GENERATION 
+-  zero-shot prompting : one prompt to generate
+-  one-shot prompting : one prompt and one example to generate 
+-  two-shot : 2 examples, few-shot : multiple examples
+
+reflection consistently outperforms direct generation on a variety of tasks
+
+tips for reflection prompts
+ex: brainstorming domain names
+- review the domain names you suggested
+- check if each name is easy to pronouce and thus easy to spread via word of mouth
+- consider whether each name mean might mean smtg negative in other languages
+- output a shortlist of only names that meet this criteria
+
+chart generation agentic workflows
+- uses autonomous AI systems to plan, fetch, design, render visual charts/diagrams from 
+  raw user prompts
+- core components like planning, tools, reflection etc
+ex : data ingestion & cleaning -> exploratory analysis -> planning & tool selection -> code generation & execution -> reflection & output 
+
+
+TOOLS 
+- code that LLM can request to be executed
+- llm can choose tools when appropriate
+ex :
+    prompt : can you find me some italian restaurants neat Mountain view, ca?
+    tool : web_search(query="restaurants near Mountain view, ca")
+
+    prompt : show me customers who bought white sunglasses
+    tool : query_database(table="sales", product="sunglasses", color="white")
+
+    prompt : how much money will i have after 10 years if i deposit $500 at 5% interest?
+    tool : interest_calc(principal=500, interest_rate=5, years=10) or eval("500 * (1+0.05)**10")
+
+
+CREATNG A TOOL 
+ex: 
+    to get current time
+
+    from datetime import datetime 
+    def get_current_time():
+        "returns the current time as string"
+        return datetime.now().strftime("%H:%M:%S")
+
+    1. provide tool to the LLM
+    2. implement the function, tell LLM that tool is available
+    3. when LLM decides to use tool, the it generates a specific output that lets you know
+    4. then u call function for the LLM
+    5. take output back to LLM & go on 
+
+
+DEFINING TOOL SYNTAX
+
+generic code
+
+from datetime import datetime
+def get_current_time():
+    return datetime.now().strftime("%H:%M:%S")
+
+LLM Access code
+
+import aisuite as ai 
+client = ai.Client()
+response = client.chat.completions.create(
+    model="openai:gpt-4o",
+    messages=messages,
+    tools=[get_current_time],
+    max_turns=5
+)
+
+JSON Schema
+
+tools = [{"type": "function",
+          "function" : {
+                        "name" : "get_current_time",
+                        "description" : "returns the current ime as a string",
+                        "parameters" : {}
+          }
+}]
+ 
+ ~or~ 
+
+tools = [{
+    "type" : "function",
+    "function" : {
+        "name" : "get_current_time",
+        "description" : "returns the current time for the given timezone",
+        "parameters" : {
+            "timezone" : "string",
+            "type" : "string",
+            "description" : "the IANA time zone string, e.g., 'America/New_York' or 'Pacific/Auckland'."
+        }
+    }
+}]
+
+MULTIPLE TOOLS 
