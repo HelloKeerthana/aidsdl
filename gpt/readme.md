@@ -1,25 +1,33 @@
-<h2>bigram model<h2> 
+<h2>Bigram Model</h2>
+Batch size: 65
+Block size / Context window: 256
+Layers: 6
+Heads: 6
+Vector dimension: 65
+Learning rate: 0.0003
+On such data, attention does not perform well with a high learning rate
+Dropout: 0.2
+Max iterations: 5k
+Evaluation interval: 500
+Evaluation iterations: 200
+<h2>GPT Model</h2>
 
-batch size = 65
-block size / context window = 256
-6 layers, 6 heads
-vector dim = 65
-learning rate 0.0003 - on such data attention dont do good with high learning rate
-dropout 0.2
-max iterations 5k
-eval intervals 500, iters 200
+(Not the same — different number of layers and hyperparameters)
 
-<h2>gpt model<h2> [not the same, diff number of layers and hyperparams]
-batch size = 32
-block size / context window = 8
-1 layer, 1 head - self attention
-vector dim = 32
-learning rate 0.001
-max iterations 3k
-eval iters 300
-
-dataset - shakesphere
-dont run model unless good gpu - gpt - 10M corpus
-bigram can run on cpu
-
-credit - andrej karpathy
+Batch size: 32
+Block size / Context window: 8
+Layers: 1
+Heads: 1
+Self-attention
+Vector dimension: 32
+Learning rate: 0.001
+Max iterations: 3k
+Evaluation iterations: 300
+<h2>Dataset</h2>
+Shakespeare
+<h2>Notes</h2>
+Do not run the GPT model unless you have a good GPU
+GPT model: ~10M corpus
+Bigram model can run on CPU
+<h2>Credit</h2>
+Andrej Karpathy
