@@ -54,4 +54,4 @@ inspired by:
 
 ## about
 
-this repository contains my hands-on implementations while exploring machine learning, deep learning, and large language models — from fundamental concepts like numpy operations and neural networks to advanced systems like gpt architectures and rag pipelines.
+this repository contains my hands-on implementations while exploring machine learning, deep learning, and large language models - from fundamental concepts like numpy operations and neural networks to advanced systems like gpt architectures and rag pipelines.
